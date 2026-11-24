@@ -250,11 +250,11 @@ input,select,textarea{font:inherit;color:var(--ink)}
 .kpi-3{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:16px}
 .kpi-3 .kpi:last-child{grid-column:span 2}
 @media(min-width:640px){.kpi-3{grid-template-columns:repeat(3,1fr)}.kpi-3 .kpi:last-child{grid-column:auto}}
-.charts{display:grid;gap:12px;margin-bottom:16px}
+.charts{display:grid;gap:12px;margin-bottom:16px;align-items:start}
 @media(min-width:700px){.charts{grid-template-columns:1fr 1fr}}
 .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:15px;box-shadow:var(--shadow-sm)}
 .chart-card h3{font-size:13px;font-weight:800;margin:0 0 13px;letter-spacing:-.01em}
-.chart-row{display:flex;align-items:center;gap:16px}
+.chart-row{display:flex;align-items:flex-start;gap:16px}
 .pie{position:relative;flex:0 0 132px;width:132px;height:132px;border-radius:50%;background:#e9eee9;box-shadow:inset 0 0 0 1px #ffffffaa}
 .pie::after{content:'';position:absolute;inset:27%;background:var(--surface);border-radius:50%;box-shadow:0 1px 4px rgba(20,35,28,.08)}
 .chart-legend{flex:1;min-width:0;display:grid;gap:8px}
