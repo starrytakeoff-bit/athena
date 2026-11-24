@@ -1030,9 +1030,10 @@ function renderLedgerList(){
 
 /* ================= settings ================= */
 function renderSettings(){
-  $('moveDate').value=data.moveDate||'';
-  $('sheetUrl').value=syncConf.url||'';
-  $('sheetToken').value=syncConf.token||'';
+  const set=(el,val)=>{if(el&&document.activeElement!==el)el.value=val};
+  set($('moveDate'),data.moveDate||'');
+  set($('sheetUrl'),syncConf.url||'');
+  set($('sheetToken'),syncConf.token||'');
   $('autoSync').checked=!!syncConf.auto;
   updateSyncChip();
 }
