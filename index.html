@@ -208,7 +208,7 @@ input,select,textarea{font:inherit;color:var(--ink)}
 .minibar{height:5px;border-radius:99px;background:#edf1ee;margin-top:6px;overflow:hidden}
 .minibar>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#7fb6a0,#4f8a74);transition:width .4s ease}
 .empty{display:grid;justify-items:center;gap:6px;padding:34px 18px;border:1px dashed #d3ddd5;border-radius:var(--r-lg);text-align:center;color:var(--muted);background:var(--surface-2)}
-.empty-ico{font-size:26px;line-height:1}
+.empty-ico{font-size:26px;line-height:1;color:#9fb3a7}.empty-ico svg{width:34px;height:34px}
 .empty strong{font-size:13.5px;color:var(--ink-2)}
 .empty p{font-size:12px;max-width:280px}
 .empty .btn{margin-top:8px}
@@ -624,6 +624,11 @@ const REMOVED_CATS=new Set(['주택·잔금','입주·잔금']);
 const STATUSES=['준비 중','견적 비교','계약 완료','구매 완료','배송 예정','배송 완료','완료'];
 const STATUS_CLS={'준비 중':'ready','견적 비교':'quote','계약 완료':'contract','구매 완료':'buy','배송 예정':'ship','배송 완료':'delivering','완료':'done'};
 const PIE_COLORS=['#397c69','#edb45d','#769cb9','#ad8bc3','#e28e8b','#73b7ae','#d3a368','#81935b','#ca8ab0','#818e9e'];
+const ICON={
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.4 4.4"/></svg>',
+  house:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path d="M9.5 20.5v-6h5v6"/></svg>',
+  calendar:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="5.2" width="16.8" height="14.6" rx="3"/><path d="M8 3.4v3.2M16 3.4v3.2M3.6 10h16.8"/></svg>'
+};
 
 /* ================= helpers ================= */
 const $=id=>document.getElementById(id);
@@ -874,7 +879,7 @@ function renderTaskList(){
   const el=$('taskList');
   if(!rows.length){
     const filtered=data.items.length>0;
-    el.innerHTML=`<div class="empty"><div class="empty-ico">${filtered?'🔍':'🏡'}</div><strong>${filtered?'조건에 맞는 항목이 없어요':'아직 등록한 항목이 없어요'}</strong><p>${filtered?'검색어나 필터를 바꿔 보세요.':'+ 버튼으로 입주 준비 항목을 추가해 보세요.'}</p><button class="btn btn-primary btn-sm" type="button" data-add>+ 항목 추가</button></div>`;
+    el.innerHTML=`<div class="empty"><div class="empty-ico">${filtered?ICON.search:ICON.house}</div><strong>${filtered?'조건에 맞는 항목이 없어요':'아직 등록한 항목이 없어요'}</strong><p>${filtered?'검색어나 필터를 바꿔 보세요.':'+ 버튼으로 입주 준비 항목을 추가해 보세요.'}</p><button class="btn btn-primary btn-sm" type="button" data-add>+ 항목 추가</button></div>`;
     return;
   }
   el.innerHTML=rows.map(taskHtml).join('');
@@ -957,7 +962,7 @@ function renderDayList(){
   $('dateDday').textContent=d===0?'오늘':d>0?`D-${d}`:`D+${-d}`;
   $('dateDday').style.display=selected?'' :'none';
   const el=$('dayList');
-  el.innerHTML=rows.length?rows.map(taskHtml).join(''):`<div class="empty"><div class="empty-ico">📅</div><strong>이 날짜에 일정이 없습니다</strong><p>이 날짜로 새 일정을 추가해 보세요.</p><button class="btn btn-primary btn-sm" type="button" data-add-date>+ 이 날짜에 일정</button></div>`;
+  el.innerHTML=rows.length?rows.map(taskHtml).join(''):`<div class="empty"><div class="empty-ico">${ICON.calendar}</div><strong>이 날짜에 일정이 없습니다</strong><p>이 날짜로 새 일정을 추가해 보세요.</p><button class="btn btn-primary btn-sm" type="button" data-add-date>+ 이 날짜에 일정</button></div>`;
 }
 
 /* ================= ledger ================= */
